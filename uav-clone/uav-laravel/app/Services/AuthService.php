@@ -17,11 +17,6 @@ class AuthService {
         $this->userRepository = $userRepository;
     }
 
-    private function createToken($user)
-    {
-        return Password::createToken($user);
-    }
-
     public function login(Request $request)
     {
         $usernamePassword = $request->only('email', 'password');
@@ -34,7 +29,7 @@ class AuthService {
         }
         $user = auth()->user();
         if ($user && $user->is_active) {
-            $token = $this->createToken($user);
+            $token = $user->createToken($user)->accessToken;
             return [
                 'status' => Response::HTTP_OK,
                 'message' => 'Successfully',
