@@ -24,7 +24,7 @@ class AdministrativeUnitService extends BaseService {
     public function getAllProvince() {
         $result = $this->repository->findByConditions([
             ['column' => 'parent_id', 'operator' => 'is', 'value' => 'null'],
-            ['column' => 'level', 'operator' => '=', 'value' => '3'],
+            ['column' => 'level', 'operator' => '=', 'value' => 3],
         ]);
         return AdministrativeUnitResource::collection($result);
     }

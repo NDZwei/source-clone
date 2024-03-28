@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Services\AdministrativeUnitService;
 use Exception;
+use Illuminate\Support\Facades\Log;
 
 class AdministrativeUnitController extends BaseController {
 

@@ -66,7 +66,11 @@ abstract class BaseRepository
         $data = $this->model;
         if(!empty($conditions)) {
             foreach ($conditions as $item) {
-                $data = $data->where($item['column'], $item['operator'], $item['value']);
+                if ($item['operator'] === 'is') {
+                    $data = $data->whereNull($item['column']);
+                } else {
+                    $data = $data->where($item['column'], $item['operator'], $item['value']);
+                }
             }
         }
         return $data->get();
@@ -76,7 +80,11 @@ abstract class BaseRepository
         $data = $this->model;
         if(!empty($conditions)) {
             foreach ($conditions as $item) {
-                $data = $data->where($item['column'], $item['operator'], $item['value']);
+                if ($item['operator'] === 'is') {
+                    $data = $data->whereNull($item['column']);
+                } else {
+                    $data = $data->where($item['column'], $item['operator'], $item['value']);
+                }
             }
         }
         $queryData = $data?->paginate($pageSize, $columns, $pageIndex);

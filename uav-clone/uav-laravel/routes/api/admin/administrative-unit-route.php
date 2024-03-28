@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('administrative-unit')->group(function () {
+    Route::get('/download-excel', [AdministrativeUnitController::class, 'downloadExcel']);
     Route::get('/get-all-province', [AdministrativeUnitController::class, 'getAllProvince']);
     Route::get('/get-all-by-parent/{id}', [AdministrativeUnitController::class, 'getAllByParent']);
     Route::get('/{id}', [AdministrativeUnitController::class, 'getById']);
